@@ -7,9 +7,7 @@
 [![version](https://img.shields.io/badge/version-v1.0.0-blue.svg)]()
 [![maintainer](https://img.shields.io/badge/maintainer-Salvatore_Lentini_--_DomHouse.it-green.svg)](https://www.domhouse.it)
 
-Una card Lovelace per Home Assistant minimale, elegante e completamente responsiva per monitorare lo stato della tua stampante e i livelli di inchiostro o toner (nero e colore). Progettata seguendo la filosofia di **DomHouse.it**.
-
-L'editor grafico è totalmente aggiornato e compatibile con le ultime versioni di Home Assistant (utilizza i nuovi `ha-selector` con tasto di svuotamento "X" integrato) ed è progettato per evitare overflow ed errori di layout.
+Una card Lovelace per Home Assistant minimale, elegante e completamente responsiva per monitorare lo stato della tua stampante e i livelli di inchiostro o toner (nero e colore).
 
 ## 📸 Screenshot
 
