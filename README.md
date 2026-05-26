@@ -11,7 +11,9 @@ Una card Lovelace per Home Assistant minimale, elegante e completamente responsi
 
 ## 📸 Screenshot
 
-in progress
+<div align="center">
+  <img src="CARD.PNG" alt="Card Preview">
+</div>
 
 ## ✨ Caratteristiche
 
