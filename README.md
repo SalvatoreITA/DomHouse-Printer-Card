@@ -41,3 +41,34 @@ in progress
 ## ⚙️ Configurazione Lovelace (YAML)
 
 Puoi configurare la card interamente tramite l'interfaccia grafica (Visual Editor), oppure puoi usare la modalità YAML. Ecco un esempio completo di configurazione:
+
+```yaml
+type: custom:domhouse-printer-card
+name: "Samsung M2070"
+theme_mode: "dark" # Opzioni: default, dark
+entity_printer: sensor.stampante_stato # Opzionale
+entity_uptime: sensor.stampante_uptime # Opzionale
+entity_black: sensor.stampante_toner_nero
+entity_color: sensor.stampante_toner_colore # Opzionale (lascia vuoto se monocromatica)
+```
+
+## 🛠️ Parametri di Configurazione
+
+| Parametro | Tipo | Obbligatorio | Descrizione |
+|---|---|---|---|
+| `type` | string | **Sì** | Deve essere impostato su `custom:domhouse-printer-card`. |
+| `name` | string | No | Nome personalizzato della stampante (Default: `Stampante`). |
+| `theme_mode` | string | No | Imposta lo stile dello sfondo. `default` segue il tema di HA, `dark` forza il tema scuro statico. |
+| `entity_black` | string | **Sì** | Entità sensore che restituisce la percentuale del toner/inchiostro nero (0-100). |
+| `entity_color` | string | No | Entità sensore per il toner/inchiostro a colori (0-100). Lascia vuoto per stampanti monocromatiche. |
+| `entity_printer` | string | No | Entità sensore che traccia lo stato della stampante (`idle`, `printing`, `unavailable`, ecc.). |
+| `entity_uptime` | string | No | Entità sensore che traccia la data/ora di accensione della stampante. |
+
+## ☕ Supporta il Progetto
+
+Ogni piccolo supporto fa un'enorme differenza: mi aiuta a mantenere vivo l'entusiasmo e mi stimola a creare e condividere nuove soluzioni per la community. Grazie di cuore per il tuo aiuto! 🚀
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/salvatore_dh)
+
+## ❤️ Crediti
+Sviluppato da [Salvatore Lentini - DomHouse.it](https://www.domhouse.it)
