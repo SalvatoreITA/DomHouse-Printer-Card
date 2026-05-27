@@ -18,6 +18,7 @@ Una card Lovelace per Home Assistant minimale, elegante e completamente responsi
 ## ✨ Caratteristiche
 
 * **Allineamento Perfetto**: Layout della griglia ottimizzato per un perfetto allineamento ottico tra l'icona della stampante e il nome (stile button card).
+* **Campanella Notifiche (NOVITÀ)**: Icona interattiva in alto a destra per monitorare e attivare/disattivare un'automazione personalizzata (es. avviso di fine inchiostro).
 * **Stati Dinamici**: Icona e testi cambiano in base allo stato della stampante (*In Attesa*, *In Stampa* con animazione lampeggiante, *Non Disponibile*, ecc.).
 * **Barre d'Inchiostro Grafiche**: Barre progressive per il Toner Nero ed un gradiente multicolore per il Toner a Colori (opzionale, ideale anche per stampanti monocromatiche).
 * **Riquadro Uptime**: Visualizzazione pulita e formattata della data e ora di attività della stampante, con gestione intelligente delle icone senza sovrapposizioni.
@@ -48,6 +49,7 @@ Puoi configurare la card interamente tramite l'interfaccia grafica (Visual Edito
 type: custom:domhouse-printer-card
 name: "Samsung M2070"
 theme_mode: "dark" # Opzioni: default, dark
+automation_entity: automation.notifica_fine_inchiostro # Opzionale
 entity_printer: sensor.stampante_stato # Opzionale
 entity_uptime: sensor.stampante_uptime # Opzionale
 entity_black: sensor.stampante_toner_nero
@@ -61,6 +63,7 @@ entity_color: sensor.stampante_toner_colore # Opzionale (lascia vuoto se monocro
 | `type` | string | **Sì** | Deve essere impostato su `custom:domhouse-printer-card`. |
 | `name` | string | No | Nome personalizzato della stampante (Default: `Stampante`). |
 | `theme_mode` | string | No | Imposta lo stile dello sfondo. `default` segue il tema di HA, `dark` forza il tema scuro statico. |
+| `automation_entity` | string | No | Entità dell'automazione legata alla stampante. Fa comparire una campanella in alto a destra cliccabile. |
 | `entity_black` | string | **Sì** | Entità sensore che restituisce la percentuale del toner/inchiostro nero (0-100). |
 | `entity_color` | string | No | Entità sensore per il toner/inchiostro a colori (0-100). Lascia vuoto per stampanti monocromatiche. |
 | `entity_printer` | string | No | Entità sensore che traccia lo stato della stampante (`idle`, `printing`, `unavailable`, ecc.). |
