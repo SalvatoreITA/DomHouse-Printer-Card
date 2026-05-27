@@ -83,10 +83,10 @@ Puoi copiare questo blocco all'interno del tuo file `automations.yaml` (ricordat
   trigger:
     - platform: numeric_state
       entity_id: sensor.canon_ts6500i_series_black
-      below: 10
+      below: 10 # Impostare la percentuale di avviso fine inchiostro
     - platform: numeric_state
       entity_id: sensor.canon_ts6500i_series_color
-      below: 10
+      below: 10 # Impostare la percentuale di avviso fine inchiostro
   condition: []
   action:
     - service: notify.mobile_app_salvatore # Sostituisci con il tuo servizio di notifica (es. notify.notify)
