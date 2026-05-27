@@ -69,6 +69,33 @@ entity_color: sensor.stampante_toner_colore # Opzionale (lascia vuoto se monocro
 | `entity_printer` | string | No | Entità sensore che traccia lo stato della stampante (`idle`, `printing`, `unavailable`, ecc.). |
 | `entity_uptime` | string | No | Entità sensore che traccia la data/ora di accensione della stampante. |
 
+## 🔔 Automazione Consigliata (Notifiche Inchiostro)
+
+La card include una comodissima **campanella interattiva** in alto a destra. Questo tasto non è solo decorativo: ti permette di attivare o disattivare rapidamente un'automazione legata alla stampante direttamente dalla plancia, senza dover cercare nei meandri delle impostazioni!
+
+Ecco un esempio di automazione perfetta da collegare a questo selettore. La logica è semplice ma fondamentale: il sistema monitora costantemente i livelli di inchiostro (Nero e Colori) e ti invia un messaggio di avviso non appena uno dei due scende **sotto la soglia critica del 10%**.
+
+Puoi copiare questo blocco all'interno del tuo file `automations.yaml` (ricordati di adattare gli `entity_id` dei sensori e il `service` di notifica in base alla tua reale configurazione):
+
+```yaml
+- alias: Stampante Casa Inchiostro Push
+  id: Stampante Casa Inchiostro Push
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.canon_ts6500i_series_black
+      below: 10
+    - platform: numeric_state
+      entity_id: sensor.canon_ts6500i_series_color
+      below: 10
+  condition: []
+  action:
+    - service: notify.mobile_app_salvatore # Sostituisci con il tuo servizio di notifica (es. notify.notify)
+      data:
+        title: "🖨️ Inchiostro in esaurimento!"
+        message: "Il livello di {{ trigger.to_state.attributes.friendly_name }} è sceso al {{ trigger.to_state.state }}%."
+  mode: single
+```
+
 ## ☕ Supporta il Progetto
 
 Ogni piccolo supporto fa un'enorme differenza: mi aiuta a mantenere vivo l'entusiasmo e mi stimola a creare e condividere nuove soluzioni per la community. Grazie di cuore per il tuo aiuto! 🚀
