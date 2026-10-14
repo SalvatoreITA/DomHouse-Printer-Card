@@ -82,18 +82,25 @@ Puoi copiare questo blocco all'interno del tuo file `automations.yaml` (ricordat
   id: Stampante Casa Inchiostro Push
   trigger:
     - platform: numeric_state
-      entity_id: sensor.canon_ts6500i_series_black
-      below: 10 # Impostare la percentuale di avviso fine inchiostro
+      entity_id: sensor.stampante_black
+      below: 10 # % di avviso fine toner
     - platform: numeric_state
-      entity_id: sensor.canon_ts6500i_series_color
-      below: 10 # Impostare la percentuale di avviso fine inchiostro
+      entity_id: sensor.stampante_cyan
+      below: 10
+    - platform: numeric_state
+      entity_id: sensor.stampante_magenta
+      below: 10
+    - platform: numeric_state
+      entity_id: sensor.stampante_yellow
+      below: 10
   condition: []
   action:
-    - service: notify.mobile_app_salvatore # Sostituisci con il tuo servizio di notifica (es. notify.notify)
+    - service: notify.mobile_app_salvatore # Sostituisci col tuo servizio di notifica
       data:
-        title: "🖨️ Inchiostro in esaurimento!"
+        title: "🖨️ Toner in esaurimento!"
         message: "Il livello di {{ trigger.to_state.attributes.friendly_name }} è sceso al {{ trigger.to_state.state }}%."
-  mode: single
+  mode: queued
+  max: 4
 ```
 
 ## ☕ Supporta il Progetto
