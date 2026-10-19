@@ -1,4 +1,4 @@
-console.info("%c 🖨️ DOMHOUSE PRINTER CARD v1.5.0 (CMYK SEPARATI) IS LOADED ", "color: white; background: #00d1ff; font-weight: bold; border: 1px solid white; padding: 2px 6px; border-radius: 4px;");
+console.info("%c 🖨️ DOMHOUSE PRINTER CARD v1.6.0 (BORDER RADIUS REGOLABILE) IS LOADED ", "color: white; background: #00d1ff; font-weight: bold; border: 1px solid white; padding: 2px 6px; border-radius: 4px;");
 
 const LitElement = customElements.get("ha-panel-lovelace")
   ? Object.getPrototypeOf(customElements.get("ha-panel-lovelace"))
@@ -59,6 +59,7 @@ class DomHousePrinterCard extends LitElement {
     const name = this._config.name || "Stampante";
     const themeMode = this._config.theme_mode || "default";
     const cardClass = themeMode === "dark" ? "force-dark" : "theme-default";
+    const borderRadius = this._config.border_radius !== undefined ? this._config.border_radius : 15;
 
     // --- COSTRUZIONE DINAMICA DELLA GRIGLIA (RESTITUITA ESATTAMENTE ALLA V1.2.1) ---
     let gridAreas = `"i n"`;
@@ -182,7 +183,7 @@ class DomHousePrinterCard extends LitElement {
     }
 
     return html`
-      <ha-card class="${cardClass}">
+      <ha-card class="${cardClass}" style="border-radius: ${borderRadius}px;">
         <div class="custom-grid" style="grid-template-areas: ${gridAreas};">
           <div class="icon-area">
             <ha-icon icon="${icon}" style="color: ${iconColor};" class="${animClass}"></ha-icon>
@@ -360,6 +361,8 @@ class DomHousePrinterCardEditor extends LitElement {
             </ha-selector>
 
             <ha-selector .hass=${this.hass} .selector=${{ select: { options: [{value: "default", label: "Segui Tema Home Assistant"}, {value: "dark", label: "Tema Scuro Fisso"}] } }} .value=${this._config.theme_mode || 'default'} .configValue=${"theme_mode"} .label=${"Stile Sfondo Card"} @value-changed=${this._valueChanged}></ha-selector>
+
+            <ha-selector .hass=${this.hass} .selector=${{ number: { min: 0, max: 50, step: 1, mode: "slider", unit_of_measurement: "px" } }} .value=${this._config.border_radius !== undefined ? this._config.border_radius : 15} .configValue=${"border_radius"} .label=${"Arrotondamento Angoli (Border Radius)"} @value-changed=${this._valueChanged}></ha-selector>
         </div>
 
         <div class="sensor-group">
